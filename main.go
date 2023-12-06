@@ -22,8 +22,8 @@ func main() {
 	// Public Static Resources
 	r.GET("/", func(c *gin.Context) { http.ServeFile(c.Writer, c.Request, "./site/build/index.html") })
 	r.GET("/manifest.json", func(c *gin.Context) { http.ServeFile(c.Writer, c.Request, "./site/build/manifest.json") })
-	publicSite := r.Group("/site")
-	publicSite.Static("/static", "./site/build")
+	publicSite := r.Group("/static")
+	publicSite.Static("/", "./site/build")
 
 	// // *************** API **************
 	public := r.Group("/api")
