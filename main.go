@@ -32,5 +32,5 @@ func main() {
 	public.GET("/:bucket_id/catch", CatchRequest)
 	public.GET("/:bucket_id/check", Check)
 
-	r.Run(":" + string(*port))
+	r.Run(":" + port)
 }
