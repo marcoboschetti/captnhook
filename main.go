@@ -20,11 +20,10 @@ func main() {
 
 	// *************** SITE **************
 	// Public Static Resources
-	r.GET("/", func(c *gin.Context) {
-		http.ServeFile(c.Writer, c.Request, "./site/build/index.html")
-	})
+	r.GET("/", func(c *gin.Context) { http.ServeFile(c.Writer, c.Request, "./site/build/index.html") })
+	r.GET("/manifest.json", func(c *gin.Context) { http.ServeFile(c.Writer, c.Request, "./site/build/manifest.json") })
 	publicSite := r.Group("/site")
-	publicSite.Static("/", "./site/build")
+	publicSite.Static("/static", "./site/build")
 
 	// // *************** API **************
 	public := r.Group("/api")
