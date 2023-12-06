@@ -1,27 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
-
-	"flag"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	port := flag.Int("port", -1, "specify a port to use http rather than AWS Lambda")
-	flag.Parse()
-
-	if port == nil {
-		p := 8080
-		port = &p
+	port := os.Getenv("PORT")
+	if port == "" {
+		fmt.Println("$PORT must be set. Defaulted to 8080")
+		port = "8080"
 	}
-
-	// port := os.Getenv("PORT")
-	// if port == "" {
-	// 	fmt.Println("$PORT must be set. Defaulted to 8080")
-	// 	port = "8080"
-	// }
 
 	// Start server
 	r := gin.Default()
