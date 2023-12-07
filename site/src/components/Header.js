@@ -1,15 +1,18 @@
 import React from "react";
-import Form from "./Form";
-import Navigation from "./Navigation";
+import { useBucket } from '../context/BucketProvider';
 
-const Header = ({ history, handleSubmit }) => {
+export var Header = () => {
+  const bucketState = useBucket();
+
+  var bucketId = "Loading...";
+  if (bucketState) {
+    bucketId = bucketState.id;
+  }
+  
   return (
-    <div>
-      <h1>Capt'n Hook</h1>
-      <Form history={history} handleSubmit={handleSubmit} />
-      <Navigation />
+    <div className="header">
+      <h1>Capt'n Hook 🏴‍☠️ </h1>
+      <h2>Bucket ID: {bucketId}</h2>
     </div>
   );
 };
-
-export default Header;
