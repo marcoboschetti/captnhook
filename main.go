@@ -29,7 +29,12 @@ func main() {
 	// // *************** API **************
 	public := r.Group("/api")
 	public.POST("/:bucket_id/catch", CatchRequest)
+	public.PATCH("/:bucket_id/catch", CatchRequest)
+	public.PUT("/:bucket_id/catch", CatchRequest)
+	public.DELETE("/:bucket_id/catch", CatchRequest)
+	public.HEAD("/:bucket_id/catch", CatchRequest)
 	public.GET("/:bucket_id/catch", CatchRequest)
+
 	public.GET("/:bucket_id/check", Check)
 
 	r.Run(":" + port)

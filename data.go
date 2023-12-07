@@ -9,6 +9,7 @@ type CatchedRequest struct {
 	ID        int       `json:"id"`
 	URL       string    `json:"url"`
 	Headers   []string  `json:"headers"`
+	Method    string    `json:"method"`
 	Body      string    `json:"body"`
 	Timestamp time.Time `json:"timestamp"`
 }

@@ -18,7 +18,6 @@ export const BucketProvider = ({ children }) => {
         let bucketIdQueryParam = searchParams.get('bucket_id');
         var bucketID = bucketIdQueryParam;
 
-
         if (!bucketIdQueryParam) {
             bucketID = uuidv4()
             navigate({

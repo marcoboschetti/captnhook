@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
           <BucketProvider basename="/">
-            <div className="container">
+            <div className="container" style={{"max-width": "unset"}}>
               <Header />
               <DisplayWebhooks />
             </div>

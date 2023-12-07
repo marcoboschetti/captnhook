@@ -1,4 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Container, Row, Col } from 'react-bootstrap';
+
 import { useQuery } from "react-query";
 import axios from "axios";
 
@@ -6,9 +8,8 @@ import { useBucket } from '../context/BucketProvider';
 import { WebhookDetails } from '../components/WebhookDetails';
 
 const retrieveWebhooks = async (params) => {
-    console.log("queryKey", params.queryKey)
     const [_, bucketId] = params.queryKey
-    const response = await axios.get("/api/" + bucketId + "/check");
+    const response = await axios.get("http://localhost:8080/api/" + bucketId + "/check");
     return response.data;
 };
 
@@ -35,21 +36,28 @@ export const DisplayWebhooks = () => {
 
     // Render
     return (
-        <div>
-            <h1>Webhook Calls</h1>
-            <ul>
-                {webhooks.map((webhook) => (
-                    <li key={webhook.id} onClick={() => setSelectedWebhook(webhook)} style={{ cursor: 'pointer' }}>
-                        <strong>ID:</strong> {webhook.id}<br />
-                        <strong>Timestamp:</strong> {webhook.timestamp}<br />
-                        <br />
-                        <hr />
-                    </li>
-                ))}
-            </ul>
 
-            <WebhookDetails selectedWebhook={selectedWebhook} />
-        </div>
+        <Container style={{"max-width": "unset"}}>
+            <Row>
+                <Col xs={4}>
+                    <h1>Calls</h1>
+                    <ul>
+                        {webhooks.map((webhook) => (
+                            <li key={webhook.id} onClick={() => setSelectedWebhook(webhook)} style={{ cursor: 'pointer' }}>
+                                <strong>ID:</strong> {webhook.id}<br />
+                                <strong>Timestamp:</strong> {webhook.timestamp}<br />
+                                <strong>Method:</strong> {webhook.method}<br />
+                                <hr />
+                            </li>
+                        ))}
+                    </ul>
+                </Col>
+                <Col xs={7}>
+                    <WebhookDetails selectedWebhook={selectedWebhook} />
+                </Col>
+            </Row>
+        </Container>
+
     );
 };
 

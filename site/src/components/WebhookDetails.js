@@ -16,12 +16,14 @@ export const WebhookDetails = (props) => {
                     <strong>ID:</strong> {selectedWebhook.id}<br />
                     <strong>Timestamp:</strong> {selectedWebhook.timestamp}<br />
                     <strong>URL:</strong> {selectedWebhook.url}<br />
+                    <strong>Method:</strong> {selectedWebhook.method}<br />
                     <strong>Headers:</strong>
                     <ul>
                         {selectedWebhook.headers.map((header, index) => (
                             <li key={index}>{header}</li>
                         ))}
                     </ul>
+                    <hr />
                     <strong>Body:</strong>
                     {selectedWebhook.body}
                     <br />

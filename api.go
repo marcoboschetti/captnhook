@@ -35,6 +35,7 @@ func CatchRequest(c *gin.Context) {
 		URL:       c.Request.URL.Path,
 		Headers:   headers,
 		Timestamp: time.Now(),
+		Method:    c.Request.Method,
 		Body:      string(jsonData),
 	}
 
