@@ -1,12 +1,19 @@
 import React from 'react';
+import ReactJson from 'react-json-view'
 
 export const WebhookDetails = (props) => {
     var selectedWebhook = props.selectedWebhook;
-    if(!selectedWebhook){
+    if (!selectedWebhook) {
         return <div>
             Please select a webhook to see details
         </div>
     }
+
+    var bodyElem = selectedWebhook.body
+    try {
+        var parsed = JSON.parse(selectedWebhook.body)
+        bodyElem = <ReactJson src={parsed} name={null} displayDataTypes={false} />
+    } catch (e) { }
 
     return (
         <div>
@@ -24,8 +31,7 @@ export const WebhookDetails = (props) => {
                         ))}
                     </ul>
                     <hr />
-                    <strong>Body:</strong>
-                    {selectedWebhook.body}
+                    <strong>Body:</strong>{bodyElem}
                     <br />
                     <hr />
                 </li>

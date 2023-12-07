@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -47,4 +48,27 @@ func getRequests(bucket string, index int) []CatchedRequest {
 		}
 	}
 	return ans
+}
+
+func deleteWebhook(bucket string, webhookID int) {
+	mu.RLock()
+	defer mu.RUnlock()
+
+	arr := inMemoryMap[bucket]
+	for i, v := range arr {
+		fmt.Println(v.ID, "==", webhookID)
+
+		if v.ID == webhookID {
+			fmt.Println("FOUND")
+			inMemoryMap[bucket] = append(arr[:i], arr[i+1:]...)
+			return
+		}
+	}
+}
+
+func deleteBucket(bucket string) {
+	mu.RLock()
+	defer mu.RUnlock()
+
+	delete(inMemoryMap, bucket)
 }

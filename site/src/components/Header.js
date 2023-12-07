@@ -17,14 +17,14 @@ export var Header = () => {
       <h1>Capt'n Hook 🏴‍☠️ </h1>
       <hr />
       <Row>
-        <Col xs={7}>
+        <Col className='col-8'>
           <div>
             <h4>Set webhook URL: {apiRoot}/catch</h4>
             <h4>API to check calls: {apiRoot}/check</h4>
           </div>
         </Col>
-        <Col xs={3}>
-          <h2>Bucket ID: {bucketId}</h2>
+        <Col className='col-4'>
+          <h4>Bucket ID: {bucketId}</h4>
         </Col>
       </Row>
       <hr />
