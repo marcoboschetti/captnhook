@@ -9,7 +9,7 @@ import { WebhookDetails } from '../components/WebhookDetails';
 
 const retrieveWebhooks = async (params) => {
     const [_, bucketId] = params.queryKey
-    const response = await axios.get("http://localhost:8080/api/" + bucketId + "/check");
+    const response = await axios.get("/api/" + bucketId + "/check");
     return response.data;
 };
 
