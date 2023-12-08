@@ -100,7 +100,7 @@ export const DisplayWebhooks = () => {
     return (
         <Container style={{ maxWidth: "unset" }}>
             <Row>
-                <Col className='col-3'>
+                <Col className='col-4'>
                     <Row className="align-items-center">
                         <Col>
                             <h1>Calls</h1>
@@ -128,7 +128,7 @@ export const DisplayWebhooks = () => {
                     </Form>
                     {webhookList}
                 </Col>
-                <Col className='col-9'>
+                <Col className='col-8'>
                     <WebhookDetails selectedWebhook={selectedWebhook} />
                 </Col>
             </Row>
