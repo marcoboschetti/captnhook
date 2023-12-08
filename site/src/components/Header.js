@@ -1,6 +1,7 @@
 import React from "react";
 import { useBucket } from '../context/BucketProvider';
 import { Container, Row, Col } from 'react-bootstrap';
+import BucketConfig from "./BucketConfig"
 
 export var Header = () => {
   const bucketState = useBucket();
@@ -28,6 +29,7 @@ export var Header = () => {
         </Col>
       </Row>
       <hr />
+      <BucketConfig />
     </div>
   );
 };
