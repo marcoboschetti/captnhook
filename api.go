@@ -19,6 +19,30 @@ func Check(c *gin.Context) {
 	c.JSON(http.StatusOK, events)
 }
 
+func GetBucketConfig(c *gin.Context) {
+	bucketID := c.Params.ByName("bucket_id")
+	events := getBucketConfig(bucketID)
+
+	c.JSON(http.StatusOK, events)
+}
+
+func SetBucketConfig(c *gin.Context) {
+	bucketID := c.Params.ByName("bucket_id")
+	input := struct {
+		ResponseStatusCode int    `json:"status_code"`
+		ResponseBody       string `json:"response_body"`
+	}{}
+
+	err := c.ShouldBindJSON(&input)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"message": err.Error()})
+		return
+	}
+
+	setBucketConfig(bucketID, input.ResponseStatusCode, input.ResponseBody)
+	c.JSON(http.StatusOK, "")
+}
+
 func DeleteWebhook(c *gin.Context) {
 	bucketID := c.Params.ByName("bucket_id")
 	webhookID, err := strconv.Atoi(c.Params.ByName("webhook_id"))
@@ -59,7 +83,7 @@ func CatchRequest(c *gin.Context) {
 	}
 
 	bucketID := c.Params.ByName("bucket_id")
-	saveRequest(bucketID, catched)
+	bucket := saveRequest(bucketID, catched)
 
-	c.JSON(http.StatusOK, `{"status":"stored"}`)
+	c.JSON(bucket.ResponseStatusCode, bucket.ResponseBody)
 }

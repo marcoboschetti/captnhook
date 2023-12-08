@@ -35,9 +35,14 @@ func main() {
 	public.HEAD("/:bucket_id/catch", CatchRequest)
 	public.GET("/:bucket_id/catch", CatchRequest)
 
+	// Bucket webhook
 	public.GET("/:bucket_id/check", Check)
 	public.POST("/:bucket_id/delete/:webhook_id", DeleteWebhook)
 	public.POST("/:bucket_id/delete", DeleteBucket)
+
+	// Bucket config
+	public.GET("/:bucket_id/config", GetBucketConfig)
+	public.POST("/:bucket_id/config", SetBucketConfig)
 
 	r.Run(":" + port)
 }
