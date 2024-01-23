@@ -127,10 +127,6 @@ export const DisplayWebhooks = () => {
                         </Form.Group>
                     </Form>
                     {webhookList}
-                    <hr>
-                    <div style="text-align: center; font-size: 0.75em;">
-    					Made with <span class="footer-icon" style="color: blue;">♥</span> by Marco
-    				</div>
                 </Col>
                 <Col className='col-8'>
                     <WebhookDetails selectedWebhook={selectedWebhook} />

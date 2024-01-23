@@ -16,6 +16,9 @@ export var Header = () => {
   return (
     <div className="header">
       <h1>Capt'n Hook 🏴‍☠️ </h1>
+      <div style={{ textAlign: 'center', fontSize: "0.75em;" }}>
+        Made with <span class="footer-icon" style={{ color: "blue;" }}>♥</span> by Marco
+      </div>
       <hr />
       <Row>
         <Col className='col-8'>
